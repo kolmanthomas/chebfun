@@ -922,7 +922,7 @@ try
                     'Attempting to transpose.'])
         else
             % Try and vectorize:
-            op = vectorCheck(op, dom, 1);
+            op = chebfun.vectorCheck(op, dom, 1);
         end
 
     elseif ( any(sv == 1) )
@@ -940,7 +940,7 @@ catch ME
         
     else
         % Try vectorizing. (This is now done silently.)
-        op = vectorCheck(op, dom, 1);
+        op = chebfun.vectorCheck(op, dom, 1);
     end
     
 end
