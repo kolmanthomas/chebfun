@@ -23,6 +23,7 @@ function f = subsasgn(f, index, val)
 
 % TODO: Document for array-valued CHEBFUN objects and quasimatrices.
 
+disp("Subsasgn called");
 idx = index(1).subs;
 
 switch index(1).type

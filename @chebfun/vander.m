@@ -14,7 +14,7 @@ end
 % Initialise a cell for storage:
 A = cell(1, n);
 % The first column (F^0 = 1):
-A{1} = chebfun(1, f.domain);
+A{1} = chebfun(1, f.m_domain);
 % Loop over the remaining columns:
 for j = 1:n-1
     A{j+1} = f.*A{j};

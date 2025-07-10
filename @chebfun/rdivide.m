@@ -53,9 +53,9 @@ if ( isa(f,'chebfun') && isa(g, 'chebfun') )
         % If one of the two CHEBFUNs uses a PERIODICTECH reprensetation, 
         % cast it to a NONPERIODICTECH.
         if ( ~isPeriodicTech(f.funs{1}) && isPeriodicTech(g.funs{1}) )
-            g = chebfun(g, g.domain, 'tech', get(f.funs{1}, 'tech'));
+            g = chebfun(g, g.m_domain, 'tech', get(f.funs{1}, 'tech'));
         elseif ( isPeriodicTech(f.funs{1}) && ~isPeriodicTech(g.funs{1}) )
-            f = chebfun(f, f.domain, 'tech', get(g.funs{1}, 'tech'));
+            f = chebfun(f, f.m_domain, 'tech', get(g.funs{1}, 'tech'));
         end
         
         % Array-valued CHEBFUN case:
@@ -200,7 +200,7 @@ if ( isa(f, 'chebfun') )
     idx = (isnan(hpv) & ~(isnan(fpv) | isnan(gpv))) | ...
         (isinf(hpv) & (abs(fpv) < 100*chebfuneps*vscale(f)));
     if ( any(idx) )
-        pvavg = (feval(h, h.domain, 'left') + feval(h, h.domain, 'right'))/2;
+        pvavg = (feval(h, h.m_domain, 'left') + feval(h, h.m_domain, 'right'))/2;
         h.pointValues(idx) = pvavg(idx);
     end
     

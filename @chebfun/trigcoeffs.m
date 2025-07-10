@@ -71,7 +71,7 @@ if ( ~isscalar(N) || isnan(N) )
     error('CHEBFUN:CHEBFUN:trigcoeffs:inputN', 'Input N must be a scalar.');
 end
 
-if ( any(isinf(f.domain)) )
+if ( any(isinf(f.m_domain)) )
     % Fourier coefficients are not allowed for unbounded domains.
     error('CHEBFUN:CHEBFUN:trigcoeffs:infint', ...
         'Infinite intervals are not supported here.');
@@ -89,7 +89,7 @@ end
 
 %% Compute the coefficients.
 
-d = f.domain([1, end]); % Domain of the function
+d = f.m_domain([1, end]); % Domain of the function
 L = diff(d);            % Length of the domain
 
 % Modes to compute coefficients. Need to handle the possible non-symmetry 

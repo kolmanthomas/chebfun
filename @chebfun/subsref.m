@@ -38,6 +38,7 @@ switch index(1).type
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%% FEVAL / COMPOSE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     case '()'
+        disp("here?");
         
         % Deal with row CHEBFUN objects:
         isTransposed = f(1).isTransposed;

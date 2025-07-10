@@ -8,6 +8,7 @@ function f = minus(f, g)
 % Copyright 2017 by The University of Oxford and The Chebfun Developers.
 % See http://www.chebfun.org/ for Chebfun information.
 
+disp("minus.m called");
 f = plus(f, uminus(g));
 
 end

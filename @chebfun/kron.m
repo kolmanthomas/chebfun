@@ -33,8 +33,8 @@ if ( isempty(f) || isempty(g) )
 end
 
 % Get domains of CHEBFUNs, and check that they don't contain breakpoints:
-fDom = f.domain;
-gDom = g.domain;
+fDom = f.m_domain;
+gDom = g.m_domain;
 assert( length(fDom) <=2 && length(gDom) <=2, ...
     'CHEBFUN:CHEBFUN:kron:breakpts', ...
      'The two CHEBFUNs must be smooth and contain no break points.')

@@ -43,9 +43,9 @@ if ( numel(f) == 1 && numel(g) == 1 )
     % If one of the two CHEBFUNs uses a PERIODICTECH representation, cast it to
     % a NONPERIODICTECH.
     if ( ~isPeriodicTech(f.funs{1}) && isPeriodicTech(g.funs{1}) )
-        g = chebfun(g, g.domain, 'tech', get(f.funs{1}, 'tech'));
+        g = chebfun(g, g.m_domain, 'tech', get(f.funs{1}, 'tech'));
     elseif ( isPeriodicTech(f.funs{1}) && ~isPeriodicTech(g.funs{1}) )
-        f = chebfun(f, f.domain, 'tech', get(g.funs{1}, 'tech'));
+        f = chebfun(f, f.m_domain, 'tech', get(g.funs{1}, 'tech'));
     end
     
     % Overlap the CHEBFUN objects:

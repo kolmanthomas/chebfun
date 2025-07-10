@@ -80,7 +80,7 @@ end
    
 % Introduce new breaks at the computed roots if required:
 if ( ~isempty(r) )
-    newDom = union(x.domain, r.');
+    newDom = union(x.m_domain, r.');
     x = restrict(x, newDom);
     y = restrict(y, newDom);
 end

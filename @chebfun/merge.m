@@ -114,7 +114,7 @@ mergedPts = [];
 
 % Store data from input CHEBFUN:
 oldPointVals = f.pointValues;
-oldDom = f.domain;
+oldDom = f.m_domain;
 oldFuns = f.funs;
 newPointVals = oldPointVals;
 newDom = oldDom;
@@ -162,7 +162,7 @@ for k = index
 end
 
 % Assign data to CHEBFUN:
-f.domain = newDom;
+f.m_domain = newDom;
 f.funs = newFuns;
 f.pointValues = newPointVals;
 

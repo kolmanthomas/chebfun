@@ -39,15 +39,17 @@ function f = columnAddBreaksAtRoots(f, tol)
 
 % Add new breaks if required:
 if ( ~isempty(rBreaks) )
-    oldDomain = f.domain;
+    oldDomain = f.m_domain;
     f = addBreaks(f, rBreaks, tol);
 
     % Enforce zero impulses at roots only if new breakpoints were added (i.e.,
     % the roots were not too close to existing breakpoints):
-    if ( ~isequal(f.domain, oldDomain) )
+    if ( ~isequal(f.m_domain, oldDomain) )
         for k = 1:min(size(f))
             % TODO: Allow a tolerance?
-            f.pointValues(ismember(f.domain, rAll(:,k)), k, :) = 0;
+            display(rAll);
+            tmp = f.pointValues;
+            tmp(ismember(f.m_domain, rAll(:,k)), k, :) = 0;
         end
     end
 end

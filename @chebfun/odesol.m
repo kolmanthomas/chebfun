@@ -127,7 +127,7 @@ warning(s.state, 'CHEBFUN:CHEBFUN:constructor:notResolved')
 
 % Parse outputs:
 if ( nargout > 1 )
-    t = chebfun(@(t) t, y.domain);
+    t = chebfun(@(t) t, y.m_domain);
     varargout = {t, y};
 else
     varargout = {y};

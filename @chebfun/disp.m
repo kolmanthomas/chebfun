@@ -100,7 +100,7 @@ for j = 1:numFuns
         end
 
         % Print information to screen:
-        temp = f.domain;   % TODO: improve chaining in subsref?
+        temp = f.m_domain;   % TODO: improve chaining in subsref?
         s = [s, sprintf('[%8.2g,%8.2g]   %6i  %8.2g %8.2g %s\n', ...
             temp(j), temp(j+1), len(j), endvals, extraData{j})];
 

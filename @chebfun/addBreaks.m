@@ -28,7 +28,7 @@ breaks = unique(breaks(:));
 breaks( isinf(breaks) ) = [];
 
 % Get rid of new breakpoints at infinity:
-domain = f.domain( isfinite(f.domain) );
+domain = f.m_domain( isfinite(f.m_domain) );
 
 % Set a tolerance:
 breakTol = max(100*eps*max(min(diff(domain)), 1), tol);

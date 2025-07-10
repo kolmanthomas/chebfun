@@ -107,7 +107,7 @@ end
 % NOTE: From here onwards, f will only be a real-scalar-valued CHEBFUN.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SMOOTH PART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dom = f.domain;
+dom = f.m_domain;
 nfuns = numel(f.funs);
 yy = zeros(nfuns, 2);
 xx = zeros(nfuns, 2);

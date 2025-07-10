@@ -144,7 +144,7 @@ classdef chebfun
         % locations of the interior breakpoints that define the domains of the
         % individual FUN objects comprising the CHEBFUN. The entries in this
         % vector should be strictly increasing.
-        mydomain              % (1x(K+1) double)
+        m_domain % (1x(K+1) double)
     end
     properties (Access = public)
         % FUNS is a cell array containing the FUN objects that comprise a
@@ -217,14 +217,14 @@ classdef chebfun
                 % Construct from function_handle, numeric, or string input:
                 
                 % Call the main constructor:
-                [f.funs, f.mydomain] = chebfun.constructor(op, dom, data, pref);
+                [f.funs, f.m_domain] = chebfun.constructor(op, dom, data, pref);
                 
                 if ( flags.doubleLength )
                     % Using the length of f.funs{1} is okay because the
                     % 'doubleLength' flag is mutually exclusive with 'splitting
                     % on'.
                     pref.techPrefs.fixedLength = 2*length(f.funs{1}) - 1;
-                    [f.funs, f.mydomain] = chebfun.constructor(op, dom, data, pref);
+                    [f.funs, f.m_domain] = chebfun.constructor(op, dom, data, pref);
                 end
 
                 % Update values at breakpoints (first row of f.pointValues):
@@ -900,6 +900,7 @@ try
         
     elseif ( all( sv == 1 ) )
         % The operator always returns a scalar:
+        disp(op(x));
         op = @(x) repmat(op(x), length(x), 1);
         
     elseif ( any(sv == sy(1)) )
@@ -969,6 +970,10 @@ function g = vec(op, y)
     function v = loopWrapperScalar(x)
         v = zeros(size(x));
         for j = 1:numel(v)
+            %disp(x(j));
+            %val = x(j)
+            %disp(op);
+            %disp(op(val));
             v(j) = op(x(j));
         end
     end

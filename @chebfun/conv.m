@@ -198,7 +198,7 @@ function h = oldConv(f, g)
 % description of the algorithm. 
 
 % Find all breakpoints in the convolution:
-[A, B] = meshgrid(f.domain, g.domain);
+[A, B] = meshgrid(f.m_domain, g.m_domain);
 dom = unique(A(:) + B(:)).';
 
 % Coalesce breaks that are close due to roundoff:
@@ -253,7 +253,7 @@ for k = 1:length(x)
     A = max(a, x(k) - d); 
     B = min(b, x(k) - c);
     if ( A < B )
-        ends = union(x(k) - g.domain, f.domain);
+        ends = union(x(k) - g.m_domain, f.m_domain);
         dom = [A, ends((A < ends) & (ends < B)), B];
         for j = 1:length(dom)-1
             % INTEGRAL is not available in versions of MATLAB prior to R2012a,

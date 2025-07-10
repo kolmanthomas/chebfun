@@ -215,7 +215,7 @@ y = zeros(length(x), 1);
 for j = 1:length(x)
     temp = roots(f - x(j));
     if ( length(temp) ~= 1 )
-        fvals = feval(f, f.domain);
+        fvals = feval(f, f.m_domain);
         err = abs(fvals - x(j));
         [ignored, k] = min(err);
         if ( err(k) > 100*tol*abs(fvals(k)))

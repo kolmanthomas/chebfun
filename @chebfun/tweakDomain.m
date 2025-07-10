@@ -99,8 +99,8 @@ if ( nargin < 4 || isempty(side) )
 end
     
 %% Decide which breaks need adjusting:
-fDom = f.domain;
-gDom = g.domain;
+fDom = f.m_domain;
+gDom = g.m_domain;
 
 % We don't want to change breakpoints in F or G that are too close:
 tinyIntsF = diff(fDom) < 2*tol; 
@@ -132,8 +132,8 @@ newBreaks(rndIdx) = round(newBreaks(rndIdx));
 %% Update F and G:
 
 % Update the .domain entries in the CHEBFUN objects:
-f.domain(newBreaksLocF) = newBreaks;
-g.domain(newBreaksLocG) = newBreaks;
+f.m_domain(newBreaksLocF) = newBreaks;
+g.m_domain(newBreaksLocG) = newBreaks;
 
 % Change the maps used by FUN objects on either side of new breakpoints:
 % NOTE: This is slightly inefficient if consecutive break points are being

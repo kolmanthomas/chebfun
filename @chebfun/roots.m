@@ -83,7 +83,7 @@ hs = hscale(f);
 vs = vscale(f);
 htol = 100*eps*hs;
 vtol = eps*vs;
-dom = f.domain;
+dom = f.m_domain;
 
 % Initialise vector to store roots:
 numCols = size(f.funs{1}, 2);

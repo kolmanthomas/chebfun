@@ -83,7 +83,7 @@ sNew = unique(sNew);
 f = restrict(f, sNew);
 
 % Assign the values in v to the new pointValues;
-[mem, loc] = ismember(s, f.domain);
+[mem, loc] = ismember(s, f.m_domain);
 f.pointValues(loc,:) = v(mem, :);
 
 end

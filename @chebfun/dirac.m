@@ -56,7 +56,7 @@ end
     
 % Set a tolerance and get the domain of f:
 tol = eps;
-dom = f.domain;
+dom = f.m_domain;
 a = dom(1);
 b = dom(end);
 vscl = vscale(f);

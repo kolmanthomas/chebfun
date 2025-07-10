@@ -32,7 +32,7 @@ function f = columnFlipud(f)
 if ( ~f.isTransposed )
 
     % Reverse and translate the breakpoints.
-    newDomain = -fliplr(f.domain) + sum(f.domain([1, end]));
+    newDomain = -fliplr(f.m_domain) + sum(f.domain([1, end]));
     % Reverse the order of the corresponding pointValues:
     f.pointValues = flipud(f.pointValues);
 
@@ -45,7 +45,7 @@ if ( ~f.isTransposed )
     end
 
     % Apply the new domain to the chebfun:
-    f.domain = newDomain;
+    f.m_domain = newDomain;
 
 else
 

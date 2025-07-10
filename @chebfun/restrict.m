@@ -117,7 +117,7 @@ locB(~logical(locB)) = [];
 newPointValues(locB,:) = pointValues(mask,:);
 
 % Attach data to CHEBFUN to return as output:
-f.domain = newDomain;
+f.m_domain = newDomain;
 f.funs = newFuns;
 f.pointValues = newPointValues;
 

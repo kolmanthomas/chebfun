@@ -33,7 +33,7 @@ end
 d = max(d, .5);
 Fc = 22050;          % Sound sampling rate.
 df = 75;             % CHEBFUN sampling divisor.
-dom = f.domain;
+dom = f.m_domain;
 
 t = linspace(dom(1), dom(end), d*Fc/df).';
 s = real(feval(f, t));             % Sample

@@ -30,18 +30,21 @@ g = addBreaksAtRoots(f, pref);
 
 % Call ABS on each of the FUNs: (result will be smooth)
 for k = 1:numel(g.funs)
-    g.funs{k} = abs(g.funs{k});
+    tmp = g.funs;
+    tmp{k} = abs(tmp{k});
 end
 
 % Take the absolute value of the point values at break points:
-g.pointValues = abs(g.pointValues);
+%g.pointValues = abs(g.pointValues);
+g(1).pointValues = abs(g.pointValues);
 
 % [TODO]: Do we want to do this?
 % [ignored, idx] = setdiff(f.domain, g.domain);
 % g = merge(g, idx.', pref); 
 
 % [TODO]: Do we want to do this?
-g = simplify(g, pref);
+% g = simplify(g, pref);
+g(1) = simplify(g(1), pref);
 
 % TODO: Should we always return a quasimatrix rather than overlap the roots?
 

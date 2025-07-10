@@ -45,7 +45,36 @@
 %! x = chebfun('x');
 %! f = x*2;
 
-%!xtest
-%! % premult by a constant fails
+%!test
 %! x = chebfun('x');
 %! f = 2*x;
+
+%!test
+%! % Chebfun construction of polynomial 
+%! f = chebfun('x^2');
+
+%% Discontinuous chebfun construction
+%!test
+%! f = chebfun('abs(x)', 'splitting', 'on');
+%! d = domain(f);
+%! assert (d(1) == -1)
+%! assert (d(2) < 1e-15)
+%! assert (d(3) == 1)
+
+
+%% Bessel function construction
+%!test
+%! f = chebfun('abs(besselj(0, x))', [0 20], 'splitting', 'on');
+
+% ===========================================
+% Chebfun guide: Getting Started with Chebfun
+% ===========================================
+
+%!xtest
+%! % Creating a chebfun for a piecewise smooth function
+%! f = chebfun('abs(x-.3)', 'splitting', 'on');
+
+
+% ==============================================
+% Chebfun guide: Integration and Differentiation
+% ==============================================

@@ -1,5 +1,6 @@
 function pass = test_abs(pref)
 
+disp("test_abs: Starting run.");
 % Get preferences:
 if ( nargin < 1 )
     pref = chebfunpref();
@@ -18,15 +19,23 @@ f = chebfun('x.^2', pref);
 f1 = abs(f);
 pass(1,1) = (numel(f1.funs) == 1) || (numel(f1.funs) == 2); % Either is OK.
 
+disp("test_abs: Not broken yet.");
+
 % Test positivity:
 f = chebfun(@(x) cos(3*x), pref);
 f1 = abs(f);
 pass(1,2) = all(feval(f1, x) >= 0);
 
 % Test if pointValues are dealt with correctly: 
+disp("Class: ");
+size(f)
 f = restrict(f + 2, sort(x)');
+disp("Class: ");
+size(f)
 %f = chebfun(@(x) sin(x) + 2, sort(x)', pref);
-f.pointValues = x;
+% f.pointValues = x;
+temp = f.pointValues;
+temp = x;
 f1 = abs(f);
 pass(1,3) = all(f1.pointValues == abs(x));
 

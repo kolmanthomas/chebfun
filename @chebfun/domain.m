@@ -9,29 +9,31 @@ function [A, B] = domain(f, flag)
 % Copyright 2017 by The University of Oxford and The Chebfun Developers. 
 % See http://www.chebfun.org/ for Chebfun information.
 
+disp("Domain called!");
 if ( nargout == 2 )
     % Return the end points as two scalars:
-    dom = f(1).domain([1 end]);
+    dom = f(1).m_domain([1 end]);
     A = dom(1);
     B = dom(2);
 
 elseif ( nargin == 2 )
     % Return the end points as a vector
     if ( strcmpi(flag, 'ends') )
-        A = f(1).domain([1 end]);
+        A = f(1).m_domain([1 end]);
     else
         error('CHEBFUN:CHEBFUN:domain:unknown', 'Unexpected input.');
     end
     
 elseif ( numel(f) == 1 )
     % CHEBFUN case:
-    A = f.mydomain;
+    A = f.m_domain;
     
+% Thomas: possibly suspect
 else
     % Merge the domains of columns in a quasimatrix:
     dom = cell(1, numel(f));
     for k = 1:numel(f)
-        dom{k} = f(k).domain;
+        dom{k} = f(k).m_domain;
     end
     A = domain.merge(dom{:});
 end

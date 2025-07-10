@@ -81,7 +81,7 @@ xl = [];
 yl = [];
 for j = k
     uk = u.funs{j};
-    endsk = uk.domain;
+    endsk = uk.m_domain;
     if ( any(isinf(endsk)) )
         error( 'CHEBFUN:CHEBFUN:plotregion:unboundedDomain', ...
             ['Plot of analyticity region is not supported for function on' ...
@@ -118,7 +118,7 @@ if ( legends ) && ( j > 1 )
 end
 
 % Plot the interval (with ticks).
-dom = u.domain;
+dom = u.m_domain;
 h2 = plot(dom, 0*dom, args{:}, lineStyle{:}, pointStyle{:});
 set(h2, 'color', [0 0 0], 'marker', '+', 'LineStyle', '-');
 h = [h ; h2];

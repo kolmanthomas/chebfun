@@ -19,6 +19,7 @@ function out = horzcat(varargin)
 % See http://www.chebfun.org/ for Chebfun information.
 
 % Remove empties:
+disp("@chebfun/horzcat called!");
 empties = cellfun(@isempty, varargin);
 if ( all(empties) )
     out = varargin{1};
@@ -52,7 +53,7 @@ if ( chebfun1(1).isTransposed )
 end
 
 % Promote doubles to CHEBFUN objects:
-domain1 = chebfun1.domain;
+domain1 = chebfun1.m_domain;
 doubleLocs = find(~isCheb);
 for k = doubleLocs
     varargin{k} = chebfun(varargin{k}, domain1);
@@ -71,7 +72,7 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% Deal with domains %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grab the domains of each of the inputs:
-allDomainsCell = cellfun(@(f) f.domain, varargin, 'UniformOutput', false);
+allDomainsCell = cellfun(@(f) f.m_domain, varargin, 'UniformOutput', false);
 
 % Ensure that the domains match:
 domainEnds = allDomainsCell{1}([1 end]);
@@ -85,6 +86,7 @@ differentBreakpoints = false;
 if ( any(diff(cellfun(@(d) length(d), allDomainsCell))) )
     differentBreakpoints = true;
 else
+    disp("hit!\n");
     tol = max(cellfun(@(f) hscale(f)*eps, varargin));
     if ( any(cellfun(@(d) any(d - domain1) > tol, allDomainsCell)) )
         differentBreakpoints = true;
@@ -125,7 +127,7 @@ else % (form an array-valued CHEBFUN)
     
     % Concatenate the FUNs:
     out = varargin{1};
-    numInts = numel(out.domain) - 1;
+    numInts = numel(out.m_domain) - 1;
     for k = 1:numInts
         funs = cellfun(@(f) f.funs{k}, varargin, 'UniformOutput', false);
         out.funs{k} = horzcat(funs{:});

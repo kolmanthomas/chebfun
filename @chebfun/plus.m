@@ -41,7 +41,7 @@ elseif ( isnumeric(g) )     % CHEBFUN + double
             f.pointValues = repmat(f.pointValues, 1, size(g, 2)); % Allow expansion in f.
         end
         if ( size(g, 2) > 1 )
-            g = repmat(g, length(f.domain), 1);             % Allow expansion in g.
+            g = repmat(g, length(f.m_domain), 1);             % Allow expansion in g.
         end
         f.pointValues = f.pointValues + g;
     else
@@ -91,10 +91,12 @@ else                          % CHEBFUN + CHEBFUN
         
         % If one of the two CHEBFUNs uses a PERIODICTECH reprensetation, 
         % cast it to a NONPERIODICTECH.
-        if ( ~isPeriodicTech(f.funs{1}) && isPeriodicTech(g.funs{1}) )
-            g = chebfun(g, g.domain, 'tech', get(f.funs{1}, 'tech'));
-        elseif ( isPeriodicTech(f.funs{1}) && ~isPeriodicTech(g.funs{1}) )
-            f = chebfun(f, f.domain, 'tech', get(g.funs{1}, 'tech'));
+        tempf = f.funs;
+        tempg = g.funs;
+        if ( ~isPeriodicTech(tempf{1}) && isPeriodicTech(tempg{1}) )
+            g = chebfun(g, g.m_domain, 'tech', get(tempf{1}, 'tech'));
+        elseif ( isPeriodicTech(tempf{1}) && ~isPeriodicTech(tempg{1}) )
+            f = chebfun(f, f.m_domain, 'tech', get(tempg{1}, 'tech'));
         end
         
         % Overlap the CHEBFUN objects:

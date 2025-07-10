@@ -268,7 +268,7 @@ if ( doPlot )
     set(axesSol, 'NextPlot', 'replacechildren');
     
     % Fix x limits
-    set(axesSol, 'xLim', u0.domain);
+    set(axesSol, 'xLim', u0.m_domain);
     
     % Fix y limits if they were specified
     if ( ~isempty(YLim) )
