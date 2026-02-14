@@ -1,0 +1,22 @@
+stages:
+  - test
+
+test-chebfun:
+  stage: test
+  image: registry.gitlab.com/chebfun-octave/octave:latest
+  script:
+    - |
+      octave-cli --eval "
+        addpath (genpath (pwd ()));
+        chebtest ('--log');
+      " 2>&1 | tee chebtest-output.txt
+  artifacts:
+    paths:
+      - chebtest-output.txt
+      - logs/
+    when: always
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == "octave_dev"
+    - when: manual
+      allow_failure: true
